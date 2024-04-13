@@ -1,0 +1,7 @@
+.vscode/
+media/imagenes/*
+db.sqlite3
+poetry.lock
+pyproject.toml
+settings.py
+funding/migrations/*
