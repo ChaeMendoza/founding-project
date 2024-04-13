@@ -5,3 +5,5 @@ poetry.lock
 pyproject.toml
 settings.py
 funding/migrations/*
+funding/__pycache__/*
+crowdfunding/__pycache__/*
