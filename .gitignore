@@ -7,3 +7,4 @@ settings.py
 funding/migrations/*
 funding/__pycache__/*
 crowdfunding/__pycache__/*
+funging/models/__pycache__/*
