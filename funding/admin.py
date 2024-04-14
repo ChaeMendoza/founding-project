@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from funding.models import Categoria, Campania, FormaPago, Beneficiario, FormaPagoUsuario
+from funding.models import Categoria, Campania, FormaPago, Beneficiario, FormaPagoUsuario, HistorialPago
 
 admin.site.site_header = 'Administrador de CrowdFunding'
 
@@ -53,6 +53,15 @@ class FormaPagoAdmin(admin.ModelAdmin):
         'id',
         'usuario',
         'forma_pago',
+        'fecha_registro',
+        'fecha_ult_act'
+    )
+    
+@admin.register(HistorialPago)
+class FormaPagoAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'usuario',
         'fecha_registro',
         'fecha_ult_act'
     )
