@@ -29,12 +29,13 @@ class FormaPagoAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'nombre',
+        'imagen',
         'fecha_registro',
         'fecha_ult_act'
     )
     
 @admin.register(Beneficiario)
-class FormaPagousuarioAdmin(admin.ModelAdmin):
+class Beneficiario(admin.ModelAdmin):
     list_display = (
         'id',
         'nombre', 
@@ -48,7 +49,7 @@ class FormaPagousuarioAdmin(admin.ModelAdmin):
     )
     
 @admin.register(FormaPagoUsuario)
-class FormaPagoAdmin(admin.ModelAdmin):
+class FormaPagoUsuarioAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'usuario',
@@ -58,7 +59,7 @@ class FormaPagoAdmin(admin.ModelAdmin):
     )
     
 @admin.register(HistorialPago)
-class FormaPagoAdmin(admin.ModelAdmin):
+class HistorialPagoAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'usuario',

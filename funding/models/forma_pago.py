@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 class FormaPago(models.Model):
     nombre = models.CharField(max_length=50)
+    imagen = models.ImageField(upload_to='imagenes/', null=True)
     fecha_registro = models.DateTimeField(auto_now_add=True, null=True)
     fecha_ult_act = models.DateTimeField(auto_now=True, null=True)
 
