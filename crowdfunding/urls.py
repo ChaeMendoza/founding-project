@@ -25,6 +25,7 @@ urlpatterns = [
     path('', views.home_view),
     path('login/', views.login_view),
     path('register/', views.register_view),
+    path('',include('funding.urls'))
 ]
 
 if settings.DEBUG:
