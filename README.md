@@ -32,6 +32,6 @@ This project represents our culmination in the 'Full Stack Web with Django' Dipl
 
 - [@poll_cedeño](https://github.com/pollct) 
 - [@israel_mendoza](https://github.com/ChaeMendoza) 
-- [@mayra_chamorro](https://github.com/)
+- [@mayra_chamorro](https://github.com/MayraIsaGit)
 
-## STARTED
+## STARTED 🔥
