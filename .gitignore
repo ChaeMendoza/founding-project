@@ -8,3 +8,7 @@ funding/migrations/*
 funding/__pycache__/*
 crowdfunding/__pycache__/*
 funding/models/__pycache__/*
+virtual-dev
+/shelf/
+/workspace.xml
+.idea
