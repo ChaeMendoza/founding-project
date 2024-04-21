@@ -17,7 +17,6 @@
   
     <!--css files-->
     <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
-    <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
     <link href="{% static 'css/glightbox.min.css'%}" rel="stylesheet">
     <link href="{% static 'css/swiper-bundle.min.css'%}" rel="stylesheet">
     <link href="{% static 'css/aos.css'%}" rel="stylesheet">
@@ -36,7 +35,8 @@
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-3" style="color: #ecedee">
 
-					<form action="{% url 'register' %}" method="post" novalidate>
+                                    <form method="post">
+                                        {% csrf_token %}
 
                                         <div class="d-flex align-items-center mb-3 pb-1">
                                             <img width="48" height="48" src="{% static 'img/icono.png' %}" alt="bumblebee"/>
@@ -46,22 +46,28 @@
                                         <h5 class="fw-normal mb-2 pb-3" style="letter-spacing: 1px;">Create an Account</h5>
 
                                         <div data-mdb-input-init class="form-outline mb-3">
-                                            <input type="email" name="email" id="form2Example18" class="form-control" />
-                                            <label class="form-label" for="form2Example18">Email address</label>
+						<div>
+							{{ form.username }}
+						</div>
+						<label class="form-label">Email</label>
                                         </div>
 
                                         <div data-mdb-input-init class="form-outline mb-3">
-                                            <input type="password" name="password" id="form2Example27" class="form-control" />
-                                            <label class="form-label" for="form2Example27">Password</label>
+						<div>
+							{{ form.password1 }}
+						</div>
+						<label class="form-label">Password</label>
                                         </div>
 
                                         <div data-mdb-input-init class="form-outline mb-3">
-                                            <input type="password" name="password2" id="form2Example28" class="form-control" />
-                                            <label class="form-label" for="form2Example28">Repeat Password</label>
+						<div>
+							{{ form.password2 }}
+						</div>
+						<label class="form-label">Confirm Password</label>
                                         </div>
 
                                         <div class="pt-1 mb-3">
-                                            <button data-mdb-button-init data-mdb-ripple-init class="button-85" type="button">Register</button>
+                                            <button data-mdb-button-init data-mdb-ripple-init class="button-85" type="submit">Register</button>
                                         </div>
 
                                         <p class="mb-5 pb-lg-2" style="color: #5a64d8;">Already have an account? <a href="{% url 'login' %}" style="color: #5a64d8;">Login here</a></p>

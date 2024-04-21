@@ -8,7 +8,9 @@ funding/migrations/*
 funding/__pycache__/*
 crowdfunding/__pycache__/*
 funding/models/__pycache__/*
-virtual-dev
+virtual-env
 /shelf/
 /workspace.xml
 .idea
+crowdfunding/__pycache__
+funding/__pycache__
