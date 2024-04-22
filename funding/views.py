@@ -7,15 +7,14 @@ from .forms import SignupForm, LoginForm
 def home_view(request):
     return render(request, 'funding/home.html')
 
-def register_view(request):
-    form = SignupForm()
+def register_view(request): 
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('login')
-        else:
-            form = SignupForm()
+    else:
+        form = SignupForm()
     return render(request, 'funding/register.html', {'form': form})
 
 def login_view(request):
