@@ -38,10 +38,15 @@
                                     <form method="post">
                                         {% csrf_token %}
 
-                                        <div class="d-flex align-items-center mb-3 pb-1">
+<!--                                         <div class="d-flex align-items-center mb-3 pb-1">
                                             <img width="48" height="48" src="{% static 'img/icono.png' %}" alt="bumblebee"/>
-                                            <span class="h1 fw-bold mb-0" style="color: #e84545">BeeFoundme</span>
-                                        </div>
+                                            <span class="h1 fw-bold mb-0" style="color: #e84545">BeeFundme</span>
+                                        </div> -->
+
+                                        <a href="{% url 'home' %}" class="logo d-flex align-items-center me-auto me-xl-0">
+                                            <img src="{% static 'img/icono.png' %}" alt=""> 
+                                            <h1>BeeFundme</h1>
+                                        </a>
 
                                         <h5 class="fw-normal mb-2 pb-3" style="letter-spacing: 1px;">Create an Account</h5>
 					

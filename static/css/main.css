@@ -2961,3 +2961,14 @@ section,
   color: var(--contrast-color);
   background-color: rgba(var(--accent-color-rgb), 0.8);
 }
+
+.logo img {
+  max-height: 40px;
+  margin-right: 6px;
+}
+
+.logo h1 {
+  margin: 0;
+  font-weight: 600;
+  color: #e84545;;
+}

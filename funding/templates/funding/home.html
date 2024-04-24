@@ -7,10 +7,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeeFoundme</title>
+    <title>BeeFundme</title>
     <meta name="keywords" content="Donate,crowdfunding">
     <meta name="author" content=" Israel Mendoza - Poll Cedeño - Mayra Chamorro">
-    <meta name="description" content="Crowd Funding BeeFounding">
+    <meta name="description" content="Crowd Funding BeeFunding">
     <!--icon-->
     <link rel="shortcut icon" href="{% static 'img/icono.png' %}" type="image/x-icon">
 
@@ -39,11 +39,10 @@
 
     <header id="header" class="header fixed-top d-flex align-items-center">
         <div class="container-fluid d-flex align-items-center justify-content-between">
-            <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+            <a href="{% url 'home' %}" class="logo d-flex align-items-center me-auto me-xl-0">
               
               <img src="{% static 'img/icono.png' %}" alt=""> 
-              <h1>BeeFoundme</h1>
-              <span>.</span>
+              <h1>BeeFundme</h1>
             </a>
       
             <!-- Nav Menu -->
@@ -79,7 +78,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10">
-                        <h2 data-aos="fade-up" data-aos-delay="100">Bienvenido a nuestro sitio BeeFoundme</h2>
+                        <h2 data-aos="fade-up" data-aos-delay="100">Bienvenido a nuestro sitio BeeFundme</h2>
                         <p data-aos="fade-up" data-aos-delay="200">Tus donaciones son de ayuda</p>
                     </div>
                     <div class="col-lg-5">
@@ -101,9 +100,9 @@
       <div class="row gy-4">
         <div class="col-lg-5 col-md-12 footer-about">
           <a href="index.html" class="logo d-flex align-items-center">
-            <span>BeeFoundme</span>
+            <span>BeeFundme</span>
           </a>
-          <p>Crowfounding BeeFoundme.</p>
+          <p>Crowfunding BeeFundme.</p>
           <div class="social-links d-flex mt-4">
             <a href=""><i class="bi bi-twitter"></i></a>
             <a href=""><i class="bi bi-facebook"></i></a>

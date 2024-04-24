@@ -8,9 +8,11 @@ funding/migrations/*
 funding/__pycache__/*
 crowdfunding/__pycache__/*
 funding/models/__pycache__/*
+funding/models/__pycache__/
 virtual-env
 /shelf/
 /workspace.xml
 .idea
 crowdfunding/__pycache__
 funding/__pycache__
+funding/models/__pycache__/__init__.cpython-311.pyc
