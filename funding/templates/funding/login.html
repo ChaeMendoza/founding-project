@@ -1,0 +1,103 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'img/icono.png' %}" type="image/x-icon">
+    <title>Iniciar Sesión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <!--fuentes-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <!--css files-->
+    <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'css/glightbox.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/swiper-bundle.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/aos.css'%}" rel="stylesheet">
+
+    <!--main css-->
+    <link href="{% static 'css/main.css'%}" rel="stylesheet">
+
+</head>
+
+<body>
+    <section class="vh-100" style="background-color: #3b3636;">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-xl-10">
+                    <div class="card" style="border-radius: 1rem; background-color: #18181bda;">
+                        <div class="row g-0">
+                            <div class="col-md-6 col-lg-5 d-none d-md-block">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+                                    alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                            </div>
+                            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                                <div class="card-body p-4 p-lg-5" style="color: #ecedee">
+
+                                    <form method="post">
+                                        {% csrf_token %}
+
+                                        <!-- <div class="d-flex align-items-center mb-3 pb-1">
+                                            <img width="48" height="48" src="{% static 'img/icono.png' %}" alt="bumblebee" />
+                                            <span class="h1 fw-bold mb-0" style="color: #e84545"> BeeFundme</span>
+                                        </div> -->
+                                        <a href="{% url 'home' %}" class="logo d-flex align-items-center me-auto me-xl-0">
+                                            <img src="{% static 'img/icono.png' %}" alt=""> 
+                                            <h1>BeeFundme</h1>
+                                        </a>
+
+                                        <h5 class="fw-normal mb-3 pb-3"
+                                            style="letter-spacing: 1px; color: white !important;">Inicia sesión en tu cuenta</h5>
+
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <div>
+                                                <input type="email" name="username" class="w-75" >
+                                            </div>
+                                            <label class="form-label">Email</label>
+                                        </div>
+
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <div>
+                                                <input type="password" name="password" class="w-75" >
+                                            </div>
+                                            <label class="form-label">Contraseña</label>
+                                        </div>
+
+                                        <div class="pt-1 mb-4">
+                                            <button data-mdb-button-init data-mdb-ripple-init class="button-85"
+                                                type="submit">Iniciar Sesión</button>
+                                        </div>
+
+                                        <a class="small" href="#!">Olvidaste la contraseña?</a>
+                                        <p class="mb-5 pb-lg-2" style="color: #5a64d8;">No tienes una cuenta? 
+                                            <a href="{% url 'register' %}" style="color: #5a64d8;">
+                                                Registrarse aquí
+                                            </a>
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/2123534d62.js" crossorigin="anonymous"></script>
+</body>
+</html>

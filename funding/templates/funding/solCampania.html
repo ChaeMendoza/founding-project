@@ -1,0 +1,61 @@
+{% extends 'funding/index.html' %}
+{% load tags %}
+{% block main %}
+{% load static%}
+
+<h3 data-aos="fade-up" data-aos-delay="100" class="text-center">Personas de todo el mundo están iniciando proyectos para ayudar a alguien.</h3>
+<br>
+<div class="card mb-3 text-white bg-dark" >
+  <div class="row g-0">
+
+    <div class="col-md-12">
+      <div class="card-body">
+        <h5 class="card-title">Datos de la Campaña</h5>
+        <p class="card-text"> Proporciona información que ayudara a identidicar y buscar la campaña.</p>
+        <br>
+        <div class="row g-3">
+          <div class="mb-3 ">
+            <label for="nombre" class="form-label">Nombre de la Campaña</label>
+            <input type="text" class="form-control" id="nombre" aria-describedby="nombreCampHelper required">
+            <div id="nombreCampHelper" class="form-text text-white bg-dark">Asigna un nombre a tu campaña</div>
+          </div>
+          <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripción</label>
+            <textarea class="form-control"  id="descripcion" required></textarea>
+          <label for="floatingTextarea">Describe la campaña</label>
+          </div>
+          <div class="mb-3 col-md-6">
+            <label for="beneficiario" class="form-label">Beneficiario</label>
+            <input type="text" class="form-control" id="beneficiario" required>            
+          </div>                   
+          <div class="mb-3 col-md-6" >
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+            <div id="emailHelp" class="form-text text-white bg-dark">No compartiremos su email con nadie</div>
+          </div>
+          <label for="montoRecaudar">Valor a recaudar</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">$</span>
+            <input type="number" class="form-control" aria-label="Monto en dólares (con punto y dos decimales)" id="montoRecaudar" required>
+          </div>
+          <div class="mb-3">
+            <label for="categoria" class="form-label">Categoría</label>
+            <select class="form-select form-select-sm" aria-label="Categoria" id="categoria" required>
+              {% for categoria in categorias %}
+                <option value={{categoria.id}}>{{categoria.nombre}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col-md-12 text-center">
+            <button id="guardarSolCapmania"  class="btn btn-outline-success" onclick="guardarSolCapmania(document.getElementById('nombre').value,document.getElementById('descripcion').value,document.getElementById('categoria').value,document.getElementById('beneficiario').value,'{{csrf_token}}',document.getElementById('montoRecaudar').value,document.getElementById('email').value)">Crear Campaña</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+  <script src="{% static 'js/guardar.js' %}"></script>
+{% endblock %}

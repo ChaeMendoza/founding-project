@@ -1,0 +1,29 @@
+{% load tags %}
+{% for campania in campanias %}
+<div class="col" data-aos="fade-up">
+  <div class="card mb-3 text-white bg-dark" style="max-width: 600px; {% if forloop.counter0|add:1|divisibleby:2 %} float: right; {% endif %}">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{campania.foto.url}}" class="card-img-top" alt="campaña">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{campania.nombre}}</h5>
+          <p class="card-text" style="font-size: 14px;">{{campania.descripcion}}</p>
+          <div class="progress" style="height: 5px;">
+            <div class="progress-bar bg-success" role="progressbar" style="width: {% porcentaje campania.monto_recaudado campania.monto_x_recaudar %}%" aria-valuenow="{% porcentaje campania.monto_recaudado campania.monto_x_recaudar %}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-between">
+              <small class="text-white" style="align-content: center;">
+                <b>Recaudado: $ {{campania.monto_recaudado}}</b>
+              </small>
+              <button class="btn btn-sm btn-success btn-card donar" data-campania="{{campania.id}}">Donar ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}

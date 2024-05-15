@@ -1,0 +1,68 @@
+{% extends 'funding/index.html' %}
+{% load tags %}
+{% block main %}
+
+<h3 data-aos="fade-up" data-aos-delay="100" class="text-center">Te presentamos algunas campañas que te pueden interesar.</h3>
+<br>
+<div class="row row-cols-1 campanias" id="campanias">
+
+
+</div>
+
+<div class="row">
+  <div class="col text-center mt-3">
+    <button class="btn btn-md btn-dark" id="mas">Mostrar más</button>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  (() => {
+
+    var page = 0;
+
+    const mas = document.getElementById("mas");
+    mas.addEventListener('click', getCampanias);
+
+    if(page === 0) mas.click();
+
+    async function getCampanias() {
+      Swal.fire({
+        title: "Obteniendo campañas.",
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading();
+        },
+      });
+      page++;
+      var data = {
+        'page': page
+      };
+      try {
+        const response = await fetch("{% url 'get_home_por_pagina' %}", {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: {  
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{csrf_token}}'
+          }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          if(data.html_from_view == '') ;
+          else document.getElementById('campanias').innerHTML += data.html_from_view;
+        } else {
+          //do nothing
+        }
+      } catch (error) {
+        //do nothing
+      }
+      Swal.close();
+    }
+
+  })();
+</script>
+{% endblock %}

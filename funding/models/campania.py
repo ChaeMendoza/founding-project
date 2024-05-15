@@ -14,6 +14,7 @@ class Campania(models.Model):
     fecha_cierre = models.DateField()
     fecha_registro = models.DateTimeField(auto_now_add=True)
     fecha_ult_act = models.DateTimeField(auto_now=True)
+    estado = models.BooleanField(null=True)
 
     def __str__(self) -> str:
         return f'{self.nombre} ({self.id})'

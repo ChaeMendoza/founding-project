@@ -1,0 +1,27 @@
+
+{% extends 'funding/index.html' %}
+{% load tags %}
+{% block main %}
+{% load static %}
+<h3 data-aos="fade-up" data-aos-delay="100" class="text-center">Nosotros</h3>
+<br>
+<div class="card mb-3 text-white bg-dark" >
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{% static 'img/nosotros.jpg' %}" class="img-fluid rounded-start" alt="nosotros">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">BeeFunding</h5>
+          <p class="card-text"> Es una plataforma global de crowdfunding para donaciones. 
+            Cualquier persona de cualquier país del mundo puede abrir un campaña fácilmente y empezar a recaudar fondos en todo el mundo para sus seres queridos, ellos mismos, o para ayudar a la comunidad.</p>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">¿Qué es el Crowdfunding? </h5>
+    <p class="card-text"> El crowdfunding aprovecha el poder de las redes sociales e Internet para proporcionar a la gente medios para recaudar fondos, ayudar a otros a superar dificultades y lograr los objetivos a los que aspiran. Con el crowdfunding puedes ayudar a un amigo o a toda una comunidad. Puedes conseguir muchas cosas, desde ayudar a un amigo a pagar una operación quirúrgica hasta cumplir el sueño de un estudiante de ir a la universidad, y muchas cosas más.</p>
+ </div>
+  
+{% endblock %}
