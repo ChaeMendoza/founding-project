@@ -35,3 +35,17 @@ This project represents our culmination in the 'Full Stack Web with Django' Dipl
 - [@mayra_chamorro](https://github.com/MayraIsaGit)
 
 ## STARTED 🔥
+
+### Requirements:
+PostgreSQL must be installed. Create a database.
+
+### Initialization Steps:
+    
+1. Fork the project or clone it to your preference.
+2. Create a virtual environment.
+3. Install the required dependencies by running pip install -r requirements.txt.
+4. Execute the command python manage.py makemigrations. Ensure that it reports "No changes detected."
+5. Initialize the database by running python manage.py migrate.
+6. Finally, start the server with python manage.py runserver.
+
+Once completed, the program should be ready to run flawlessly 🚀
