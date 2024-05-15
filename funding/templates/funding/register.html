@@ -1,12 +1,12 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{% static 'img/icono.png' %}" type="image/x-icon">
-    <title>Register</title>
+    <title>Registro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -48,11 +48,11 @@
                                             <h1>BeeFundme</h1>
                                         </a>
 
-                                        <h5 class="fw-normal mb-2 pb-3" style="letter-spacing: 1px;">Create an Account</h5>
+                                        <h5 class="fw-normal mb-2 pb-3" style="letter-spacing: 1px;">Crear una cuenta</h5>
 					
                                         <div data-mdb-input-init class="form-outline mb-3">
 						                    <div class="w-100">
-							                    {{ form.username }}
+                                                <input type="email" name="username" class="w-75" >
 						                    </div>
 						                    <label class="form-label">Email</label>
                                         </div>
@@ -60,17 +60,17 @@
 					
                                         <div data-mdb-input-init class="form-outline mb-3">
 						                    <div class="w-100">
-							                    {{ form.password1 }}
+                                                <input type="password" name="password1" class="w-75" >
 						                    </div>
-						                    <label class="form-label">Password</label>
+						                    <label class="form-label">Contraseña</label>
                                         </div>
 
 					
                                         <div data-mdb-input-init class="form-outline mb-3">
 						                    <div class="w-100">
-							                    {{ form.password2 }} 
+                                                <input type="password" name="password2" class="w-75" >
 						                    </div>
-						                    <label class="form-label">Confirm Password</label>
+						                    <label class="form-label">Confirme la contraseña</label>
                                             {% if form.errors.password2 %}
 							                <ul class="list-group">
 							                    <li class="list-group-item list-group-item-danger" style="font-size: 14px">{{ form.errors.password2 }}</li>
@@ -79,16 +79,15 @@
                                         </div>	
 
                                         <div class="pt-1 mb-3">
-                                            <button data-mdb-button-init data-mdb-ripple-init class="button-85" type="submit">Register</button>
+                                            <button data-mdb-button-init data-mdb-ripple-init class="button-85" type="submit">Registrarse</button>
                                         </div>
 
-                                        <p class="mb-5 pb-lg-2" style="color: #5a64d8;">Already have an account? <a href="{% url 'login' %}" style="color: #5a64d8;">Login here</a></p>
+                                        <p class="mb-5 pb-lg-2" style="color: #5a64d8;">Ya tiene una cuenta? <a href="{% url 'login' %}" style="color: #5a64d8;">Iniciar sesión</a></p>
                                     </form>
-
                                 </div>
                             </div>
                             <div class="col-md-5 col-lg-5 d-none d-md-block">
-                                <img src="https://img.freepik.com/foto-gratis/reunion-empresarios-oficina-trabajo_23-2148908922.jpg?t=st=1713055967~exp=1713059567~hmac=82125f5559b3d031940fd47b94469348d12adc1db6a06fe824b6c30e887cd722&w=360" alt="login form" class="img-fluid" style="border-radius: 0 1rem 1rem 0;" />
+                                <img src="https://img.freepik.com/foto-gratis/reunion-empresarios-oficina-trabajo_23-2148908922.jpg?t=st=1713055967~exp=1713059567~hmac=82125f5559b3d031940fd47b94469348d12adc1db6a06fe824b6c30e887cd722&w=360" alt="login form" class="img-fluid w-100" style="border-radius: 0 1rem 1rem 0;" />
                             </div>
                         </div>
                     </div>
@@ -96,6 +95,5 @@
             </div>
         </div>
     </section>
-    
 </body>
 </html>

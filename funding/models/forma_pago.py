@@ -6,6 +6,7 @@ class FormaPago(models.Model):
     imagen = models.ImageField(upload_to='imagenes/', null=True)
     fecha_registro = models.DateTimeField(auto_now_add=True, null=True)
     fecha_ult_act = models.DateTimeField(auto_now=True, null=True)
+    estado = models.BooleanField(null=True)
 
     def __str__(self) -> str:
         return f'{self.nombre} ({self.id})'

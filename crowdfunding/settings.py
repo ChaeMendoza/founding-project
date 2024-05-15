@@ -73,6 +73,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'funding.context_processors.get_all_categorias',
+                'funding.context_processors.get_formas_pago'
             ],
         },
     },

@@ -1,0 +1,221 @@
+{% extends 'funding/index.html' %}
+{% block main %}
+{% load tags %}
+
+<h3 data-aos="fade-up" data-aos-delay="100" class="text-center">Descripción de la campaña</h3>
+<br>
+<div class="row mb-3">
+  <div class="col-lg-6 col-md-6 col-sm-12">
+    <div class="card text-white bg-dark">
+      <img src="{{campania.foto.url}}" class="card-img-top" alt="Campaña">
+      <div class="card-body">
+        <h5 class="card-title">{{campania.nombre}}</h5>
+        <p class="card-text">{{campania.descripcion}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6 col-md-6 col-sm-12">
+    <div class="card text-white bg-dark">
+      <div class="card-body" style="text-align: center;">
+        <h4 class="card-title" style="display: inline-block;">${{campania.monto_recaudado}}</h4><h7 style="color: dimgray;">&nbsp;recaudados de ${{campania.monto_x_recaudar}}</h7>
+        <div class="progress" style="height: 5px;">
+          <div class="progress-bar bg-success" role="progressbar" style="width: {% porcentaje campania.monto_recaudado campania.monto_x_recaudar %}%" aria-valuenow="{% porcentaje campania.monto_recaudado campania.monto_x_recaudar %}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <br>
+        <h6 style="color: dimgray; float: left;">{{donativos}} donativo(s)</h6>
+        <br>
+        <hr>
+          {% if campania.estado == True%}
+            <button class="btn btn-lg btn-success btn-card" id="donar-ahora">Donar Ahora</button>
+          {% else %}
+            <button class="btn btn-lg btn-secondary" disabled>Donar Ahora</button>
+            <p class="text-danger"><em><small>Esta campaña se encuentra cerrada</small></em></p>
+          {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block modal %}
+  {% if user.is_authenticated and campania.estado == True %}
+    <!-- Modal -->
+    <div class="modal fade text-white" data-bs-theme="dark" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Donación:</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="form-floating mb-3">
+              <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                {% for forma in formaPago %}
+                  <option value="{{forma.id}}" data-nombre="{{forma.nombre}}">{{forma.nombre}}</option>
+                {% endfor %}
+              </select>
+              <label for="floatingSelect">Formas de pago</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="numero" pattern="[0-9]{13,19}" required maxlength="19">
+              <label for="numero">Ingrese número de <span id="tipo-pago">tarjeta</span></label>
+            </div>
+            <div class="form-floating">
+              <input type="number" class="form-control" id="valor">
+              <label for="valor">Ingrese valor a donar</label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary btn-card" id="pagar-donacion">Donar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  {%endif%}
+{% endblock %}
+
+{% block scripts %}
+<script>
+
+  (() =>{
+    const donar = document.getElementById('donar-ahora');
+    donar.addEventListener("click", () => {
+      {% if user.is_authenticated %}
+        const myModal = new bootstrap.Modal('#staticBackdrop');
+        myModal.show();
+      {% else %}
+        Swal.fire({
+          html: "<span style='color: white;'>Por favor inicie sesión para poder donar.</span>",
+          icon: "error"
+        });
+      {% endif %}
+    });
+
+    const select = document.getElementById('floatingSelect');
+    select.addEventListener("change", () => {
+      const selectedText = select.options[select.selectedIndex].text;
+      if(selectedText.includes('Tarjeta')) {
+        document.getElementById('tipo-pago').innerText = 'tarjeta';
+      }
+      else {
+        document.getElementById('tipo-pago').innerText = 'cuenta';
+      }
+    });
+
+    const pagar = document.getElementById('pagar-donacion');
+    pagar.addEventListener("click", async () => {
+      if(document.getElementById('numero').value == '' || document.getElementById('valor').value == '') {
+        Swal.fire({
+          html: "<span style='color: white;'>Por favor ingrese todos los datos para proceder con la donación.</span>",
+          icon: "error"
+        });
+        if(!validarTarjeta(document.getElementById('numero').value)) {
+          Swal.fire({
+            html: "<span style='color: white;'>Número de tarjeta inválido, por favor verifique.</span>",
+            icon: "error"
+          });
+        }
+        return;
+      }
+      else {
+
+        Swal.fire({
+          title: "Procesando pago",
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading();
+          },
+        });
+
+        const formData = {
+          valor: document.getElementById('valor').value,
+          campania_id : "{{campania.id}}"
+        };
+
+        try {
+          const response = await fetch("{% url 'campania_pago' %}", {
+            method: 'POST',
+            body: JSON.stringify(formData),
+            headers: {  
+              'Content-Type': 'application/json',
+              'X-CSRFToken': '{{csrf_token}}'
+            }
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            Swal.fire({
+              html: "<span style='color: white;'>Pago realizado correctamente.</span>",
+              icon: "success",
+              allowOutsideClick: false
+            }).then((result) => {
+              if (result.isConfirmed) {
+                location.reload()
+              }
+            });
+          } else {
+            Swal.fire({
+              html: "<span style='color: white;'>No se pudo realizar el pago.</span>",
+              icon: "error"
+            });
+          }
+        } catch (error) {
+          Swal.fire({
+            html: "<span style='color: white;'>No se pudo realizar el pago.</span>",
+            icon: "error"
+          });
+        }
+      }
+    });
+
+    const numero = document.getElementById('numero')
+    numero.addEventListener('input', () => {
+      if(numero.value != '')
+        formatearTarjeta(numero);
+    });
+
+    function formatearTarjeta(input) {
+      // Elimina los guiones existentes y espacios
+      const numeroLimpio = input.value.replace(/[-\s]/g, "");
+      
+      // Divide el número en grupos de 4 caracteres
+      const grupos = numeroLimpio.match(/.{1,4}/g);
+      
+      // Une los grupos con guiones
+      input.value = grupos.join("-");
+    }
+
+    function validarTarjeta(numeroTarjeta) {
+      if (/[^0-9-\s]+/.test(numeroTarjeta)) {
+        return false;
+      }
+
+      // Algoritmo de Luhn
+      let sumaVerificacion = 0;
+      let esPar = false;
+      const digitos = numeroTarjeta.replace(/\D/g, "");
+
+      for (let i = digitos.length - 1; i >= 0; i--) {
+        let digito = parseInt(digitos.charAt(i), 10);
+
+        if (esPar) {
+          digito *= 2;
+          if (digito > 9) {
+            digito -= 9;
+          }
+        }
+
+        sumaVerificacion += digito;
+        esPar = !esPar;
+      }
+
+      return sumaVerificacion % 10 === 0;
+    }
+
+  })();
+
+</script>
+{% endblock %}

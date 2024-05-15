@@ -2,13 +2,11 @@
 {% load tags %}
 {% block main %}
 
-<h3 data-aos="fade-up" data-aos-delay="100" class="text-center">Te presentamos algunas campañas que te pueden interesar.</h3>
+<h3 data-aos="fade-up" data-aos-delay="100" class="text-center">Resultados obtenidos.</h3>
 <br>
-<div class="row row-cols-1 campanias" id="campanias">
-
+<div class="row" id="campanias">
 
 </div>
-
 <div class="row">
   <div class="col text-center mt-3">
     <button class="btn btn-md btn-dark" id="mas">Mostrar más</button>
@@ -41,7 +39,7 @@
         'page': page
       };
       try {
-        const response = await fetch("{% url 'get_home_por_pagina' %}", {
+        const response = await fetch("{% url 'get_historias_por_pagina' %}", {
           method: 'POST',
           body: JSON.stringify(data),
           headers: {  
